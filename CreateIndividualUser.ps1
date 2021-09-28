@@ -23,10 +23,10 @@ $chars = (48..57) + (65..90) + (97..122) + 36 + 33
 $chars | Get-Random -Count $length | %{ $Password += [char]$_ }
 
     $OU = $null
-    if ($MSE -eq 'ACE') {$OU = 'OU=Users,OU=ACE,OU=11MEULHD,DC=11MEULHD,DC=usmc,DC=mil'}
-    if ($MSE -eq 'CE') {$OU = 'OU=Users,OU=CE,OU=11MEULHD,DC=11MEULHD,DC=usmc,DC=mil'}
-    if ($MSE -eq 'LCE') {$OU = 'OU=Users,OU=LCE,OU=11MEULHD,DC=11MEULHD,DC=usmc,DC=mil'}
-    if ($MSE -eq 'GCE') {$OU = 'OU=Users,OU=GCE,OU=11MEULHD,DC=11MEULHD,DC=usmc,DC=mil'}
+    if ($MSE -eq 'ACE') {$OU = 'OU=Users,OU=ACE,OU=MEULHD,DC=MEULHD,DC=usmc,DC=mil'}
+    if ($MSE -eq 'CE') {$OU = 'OU=Users,OU=CE,OU=MEULHD,DC=MEULHD,DC=usmc,DC=mil'}
+    if ($MSE -eq 'LCE') {$OU = 'OU=Users,OU=LCE,OU=MEULHD,DC=MEULHD,DC=usmc,DC=mil'}
+    if ($MSE -eq 'GCE') {$OU = 'OU=Users,OU=GCE,OU=MEULHD,DC=MEULHD,DC=usmc,DC=mil'}
 
 $EDIPI = $EDIPI + '117274@mil'
 
@@ -38,7 +38,7 @@ New-ADUser -SamAccountName "$Firstname.$Lastname" `
                -DisplayName "$Lastname $Rank $Firstname" `
                -Path $OU `
                -Title $Rank `
-               -EmailAddress "$Firstname.$Lastname@11MEULHD.usmc.mil" `
+               -EmailAddress "$Firstname.$Lastname@MEULHD.usmc.mil" `
                -AccountPassword (convertto-securestring $Password -AsPlainText -Force) -ChangePasswordAtLogon $False `
                -SmartCardLogonRequired $true `
                -PasswordNeverExpires $true `
