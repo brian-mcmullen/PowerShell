@@ -1,4 +1,4 @@
-﻿$ADuser = Import-Csv 'C:\Users\brmcmul\Desktop\MEU\11 MEU\MyScripts\11MEUFWD\AllUsers.csv'
+﻿$ADuser = Import-Csv 'C:\AllUsers.csv'
 
 # Password length
 $length = 20
@@ -11,10 +11,10 @@ Foreach ($User in $ADuser) {
     $chars | Get-Random -Count $length | %{ $Password += [char]$_ }
 
     $OU = $null
-    if ($User.MSE -eq 'ACE') {$OU = 'OU=Users,OU=ACE,OU=11MEUFWD,DC=11MEUFWD,DC=usmc,DC=mil'}
-    if ($User.MSE -eq 'CE') {$OU = 'OU=Users,OU=CE,OU=11MEUFWD,DC=11MEUFWD,DC=usmc,DC=mil'}
-    if ($User.MSE -eq 'LCE') {$OU = 'OU=Users,OU=LCE,OU=11MEUFWD,DC=11MEUFWD,DC=usmc,DC=mil'}
-    if ($User.MSE -eq 'GCE') {$OU = 'OU=Users,OU=GCE,OU=11MEUFWD,DC=11MEUFWD,DC=usmc,DC=mil'}
+    if ($User.MSE -eq 'ACE') {$OU = 'OU=Users,OU=ACE,OU=MEUFWD,DC=MEUFWD,DC=usmc,DC=mil'}
+    if ($User.MSE -eq 'CE') {$OU = 'OU=Users,OU=CE,OU=MEUFWD,DC=MEUFWD,DC=usmc,DC=mil'}
+    if ($User.MSE -eq 'LCE') {$OU = 'OU=Users,OU=LCE,OU=MEUFWD,DC=MEUFWD,DC=usmc,DC=mil'}
+    if ($User.MSE -eq 'GCE') {$OU = 'OU=Users,OU=GCE,OU=MEUFWD,DC=MEUFWD,DC=usmc,DC=mil'}
     $Firstname = $User.FirstName
     $Lastname = $User.Lastname
     $Rank = $User.Rank
@@ -28,7 +28,7 @@ Foreach ($User in $ADuser) {
                -DisplayName "$Lastname $Rank $Firstname" `
                -Path $OU `
                -Title $Rank `
-               -EmailAddress "$Firstname.$Lastname@11MEUFWD.usmc.mil" `
+               -EmailAddress "$Firstname.$Lastname@MEUFWD.usmc.mil" `
                -AccountPassword (convertto-securestring $Password -AsPlainText -Force) -ChangePasswordAtLogon $False `
                -SmartCardLogonRequired $true `
                -PasswordNeverExpires $true `
